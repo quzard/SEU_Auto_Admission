@@ -254,7 +254,7 @@ class Admission(object):
         self.sess.post(self.uploadTempFile,
                        {'scope': self.scope, 'fileToken': self.filetoken, 'size': '0', 'type': 'jpg,jpeg,png',
                         'storeId': 'image',
-                        'isSingle': '0', 'fileName': '', 'files[]': '行程卡.PNG'})
+                        'isSingle': '0', 'fileName': '', 'files[]': '苏康码.png'})
         self.submit1 = self.base_addr + 'qljfwapp3/sys/emapcomponent/file/saveAttachment/' + str(
             self.scope) + '/' + str(self.filetoken) + '.do'
         self.submit2 = self.base_addr + 'qljfwapp3/sys/emapcomponent/file/getUploadedAttachment/' + str(
@@ -263,7 +263,7 @@ class Admission(object):
         self.sess.post(self.submit1,
                        {'attachmentParam': str({"storeId": "image", "scope": self.scope, "fileToken": self.filetoken})})
         submit_response = self.sess.post(self.submit2)
-        self.sess.post(self.queryNextDayInschoolCount, {'DEPT_CODE': '243015', 'PERSON_TYPE': 'YJS'})
+        self.sess.post(self.queryNextDayInschoolCount, {'DEPT_CODE': str(raw_personal_info['DEPT_CODE'], 'PERSON_TYPE': str(raw_personal_info['STUDENT_TYPE']})
         valid = self.sess.post(self.validateApply, {'userid': self.uname, 'campus': str(raw_personal_info['CAMPUS']), 'beginTime': (now_time + timedelta(days=+1)).strftime("%Y-%m-%d")}).text
         if "false" in valid:
             return "存在通行证"
