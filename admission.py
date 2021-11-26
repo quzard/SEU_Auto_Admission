@@ -198,7 +198,7 @@ class Admission(object):
         raw_personal_info2 = self.get_info2(raw_personal_info['WID'])
 
         # 健康码
-        if raw_personal_info['YL6'] == '' or raw_personal_info['YL6'] == "":
+        if raw_personal_info['YL6'] == None or raw_personal_info['YL6'] == '' or raw_personal_info['YL6'] == "":
             return "上一次入校没有健康码"
         self.scope = raw_personal_info['YL6'][:-1]
         self.filetoken = raw_personal_info['YL6']
