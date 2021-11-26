@@ -263,7 +263,7 @@ class Admission(object):
         self.sess.post(self.submit1,
                        {'attachmentParam': str({"storeId": "image", "scope": self.scope, "fileToken": self.filetoken})})
         submit_response = self.sess.post(self.submit2)
-        self.sess.post(self.queryNextDayInschoolCount, {'DEPT_CODE': str(raw_personal_info['DEPT_CODE'], 'PERSON_TYPE': str(raw_personal_info['STUDENT_TYPE']})
+        self.sess.post(self.queryNextDayInschoolCount, {'DEPT_CODE': str(raw_personal_info['DEPT_CODE'], 'PERSON_TYPE': str(raw_personal_info2['STUDENT_TYPE']})
         valid = self.sess.post(self.validateApply, {'userid': self.uname, 'campus': str(raw_personal_info['CAMPUS']), 'beginTime': (now_time + timedelta(days=+1)).strftime("%Y-%m-%d")}).text
         if "false" in valid:
             return "存在通行证"
