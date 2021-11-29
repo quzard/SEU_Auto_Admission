@@ -71,9 +71,10 @@ class Admission(object):
         post_login = self.sess.post(login_post_url, personal_info)
         post_login.encoding = 'utf-8'
 
-        self.USER_INFO = re.search('{"deptName":.*}', post_login.text).group()
-        self.USER_INFO = json.loads(self.USER_INFO)
-        if re.search("学院", post_login.text):
+        
+        if re.search("deptName", post_login.text):
+            self.USER_INFO = re.search('{"deptName":.*}', post_login.text).group()
+            self.USER_INFO = json.loads(self.USER_INFO)
             return "登陆成功!"
         else:
             print(post_login.text)
