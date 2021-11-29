@@ -157,7 +157,6 @@ class Admission(object):
                     "appName": "lwWiseduElectronicPass",
                     "defKey": str(data["DEFKEY"])
                 }
-                # 下面代码不执行会导致生成一个隐形的有效卡，辅导员看不见，但系统管理员貌似能看见
                 info = (self.sess.post(url, data=parse.urlencode(post_info), headers=self.header).text)
                 if "true" in info:
                     post_info = {
